@@ -1,0 +1,70 @@
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  flex-direction: column;
+  background-color: slategray;
+}
+
+header {
+  background: #fff;
+}
+
+header nav {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header nav h1 {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+section {
+  width: 600px;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  margin: auto;
+}
+section .cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  background: #fff;
+}
+
+section .cabecalho nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section .cabecalho nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 18px;
+  color: #000;
+  margin: 0 10px;
+  height: 30px;
+  width: 30px;
+}
+
+section .cabecalho nav a:hover {
+  background: #cecece;
+}
+
+section textarea {
+  height: 300px;
+  padding: 12px 20px;
+  resize: none;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
