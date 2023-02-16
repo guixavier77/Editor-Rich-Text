@@ -31,3 +31,37 @@ const transformFontSize = () => {
 };
 transformFontSize();
 transformFontBold();
+
+let valueLength = "";
+let selectedText = "";
+let startselectedText;
+let endSelectedText;
+
+let textarea = document.getElementById("txt");
+
+const getValueChange = () => {
+  let currentValue = textarea.value;
+  valueLength = currentValue.length;
+};
+
+const getValueSelected = (evt) => {
+  const el = evt.currentTarget;
+  const selText = el.value.substr(
+    el.selectionStart,
+    el.selectionEnd - el.selectionStart,
+  );
+  selectedText = selText;
+  startselectedText = el.selectionStart;
+  endSelectedText = el.selectionEnd;
+};
+
+textarea.addEventListener("change", getValueChange);
+textarea.addEventListener("mouseup", getValueSelected);
+
+// IDEIA
+
+// PEGAR O TAMANHO (LENGTH) DO TEXTO DA MINHA TEXTAREA -> OK -> currentValue
+// PEGAR O RAIO E VALOR DO OBJETO SELECIONADO -> OK -> selText, selectionStart e selectionEnd
+// APLICAR EFEITO NO 'RAIO'
+// SUBSTITUIR A PARTE DO TEXTO EM QUE RAIO ESTA LOCALIZADO, PELO RAIO C/ EFEITO
+//setar o value do text area, quando ocorrer a modificação
