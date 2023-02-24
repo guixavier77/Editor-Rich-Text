@@ -1,14 +1,44 @@
-const transformFontBold = () => {
-  const buttonBold = document.querySelector(".bold");
-  const boldAction = (e) => {
-    e.preventDefault();
-  };
-  buttonBold.addEventListener("click", boldAction);
+let textarea = document.getElementById("txt");
+let divarea = document.getElementById("txtSecond");
+let selectedText = "";
+let mutation = " ";
+let currentValue;
+let startselectedText;
+let endSelectedText;
+
+const getValueChange = () => {
+  currentValue = textarea.value;
 };
+
+textarea.addEventListener("input", getValueChange);
+
+const getValueSelected = (evt) => {
+  const el = evt.currentTarget;
+  let selText = el.value.substr(
+    el.selectionStart,
+    el.selectionEnd - el.selectionStart,
+  );
+  selectedText = selText;
+  startselectedText = el.selectionStart;
+  endSelectedText = el.selectionEnd;
+};
+
+textarea.addEventListener("mouseup", getValueSelected);
 
 const buttonItalic = document.querySelector(".italic");
 const buttonUnderline = document.querySelector(".underline");
 const buttonQuote = document.querySelector(".quote");
+
+const transformFontBold = () => {
+  const buttonBold = document.querySelector(".bold");
+  const boldAction = (e) => {
+    e.preventDefault();
+    if (!textarea.value) alert("Digite algo");
+    currentValue = currentValue.substring(0, startselectedText) + "#";
+    activeContent();
+  };
+  buttonBold.addEventListener("click", boldAction);
+};
 
 const transformFontSize = () => {
   const buttonSize = document.querySelector(".size");
@@ -29,39 +59,12 @@ const transformFontSize = () => {
   getSelectValue();
   selectionFontSize();
 };
-transformFontSize();
 transformFontBold();
+transformFontSize();
 
-let valueLength = "";
-let selectedText = "";
-let startselectedText;
-let endSelectedText;
-
-let textarea = document.getElementById("txt");
-
-const getValueChange = () => {
-  let currentValue = textarea.value;
-  valueLength = currentValue.length;
+const activeContent = () => {
+  divarea.classList.remove("hiden");
+  divarea.innerText = textarea.value;
+  textarea.classList.add("hiden");
 };
-
-const getValueSelected = (evt) => {
-  const el = evt.currentTarget;
-  const selText = el.value.substr(
-    el.selectionStart,
-    el.selectionEnd - el.selectionStart,
-  );
-  selectedText = selText;
-  startselectedText = el.selectionStart;
-  endSelectedText = el.selectionEnd;
-};
-
-textarea.addEventListener("change", getValueChange);
-textarea.addEventListener("mouseup", getValueSelected);
-
 // IDEIA
-
-// PEGAR O TAMANHO (LENGTH) DO TEXTO DA MINHA TEXTAREA -> OK -> currentValue
-// PEGAR O RAIO E VALOR DO OBJETO SELECIONADO -> OK -> selText, selectionStart e selectionEnd
-// APLICAR EFEITO NO 'RAIO'
-// SUBSTITUIR A PARTE DO TEXTO EM QUE RAIO ESTA LOCALIZADO, PELO RAIO C/ EFEITO
-//setar o value do text area, quando ocorrer a modificação
