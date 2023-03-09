@@ -22,7 +22,6 @@ header nav h1 {
 }
 
 section {
-  width: 600px;
   display: flex;
   align-self: center;
   flex-direction: column;
@@ -62,7 +61,8 @@ section .cabecalho nav a:hover {
 
 .txtstyle {
   font-family: montserrat, monospace;
-  height: 300px;
+  width: 600px;
+  height: 200px;
   padding: 12px 20px;
   resize: none;
   font-size: 16px;
@@ -71,6 +71,21 @@ section .cabecalho nav a:hover {
   background: #fff;
 }
 
-.hiden {
-  display: none;
+.ph-arrow-bend-right-down-bold {
+  justify-content: center;
+  background: #fff;
+  font-size: 96px;
+}
+p {
+  margin: 0;
+}
+.strong {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+.underline {
+  text-decoration: underline;
 }

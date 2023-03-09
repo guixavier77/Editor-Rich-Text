@@ -1,17 +1,16 @@
 let textarea = document.getElementById("txt");
 let divarea = document.getElementById("txtSecond");
-let selectedText = "";
-let mutation = " ";
+let selectedText;
 let currentValue;
 let startselectedText;
 let endSelectedText;
+let startWrapText;
+let endWrapText;
 
 const getValueChange = () => {
   currentValue = textarea.value;
 };
-
 textarea.addEventListener("input", getValueChange);
-
 const getValueSelected = (evt) => {
   const el = evt.currentTarget;
   let selText = el.value.substr(
@@ -22,20 +21,23 @@ const getValueSelected = (evt) => {
   startselectedText = el.selectionStart;
   endSelectedText = el.selectionEnd;
 };
-
 textarea.addEventListener("mouseup", getValueSelected);
 
-const buttonItalic = document.querySelector(".italic");
-const buttonUnderline = document.querySelector(".underline");
-const buttonQuote = document.querySelector(".quote");
+const getWrapText = () => {
+  startWrapText = currentValue.slice(0, startselectedText);
+  endWrapText = currentValue.slice(endSelectedText, currentValue.length);
+};
+const insertElement = (tagClass) => {
+  getWrapText();
+  divarea.innerHTML += `<p> ${startWrapText}<span class='${tagClass}'>${selectedText}</span>${endWrapText}</p>`;
+};
 
 const transformFontBold = () => {
   const buttonBold = document.querySelector(".bold");
   const boldAction = (e) => {
     e.preventDefault();
     if (!textarea.value) alert("Digite algo");
-    currentValue = currentValue.substring(0, startselectedText) + "#";
-    activeContent();
+    insertElement("strong");
   };
   buttonBold.addEventListener("click", boldAction);
 };
@@ -59,12 +61,29 @@ const transformFontSize = () => {
   getSelectValue();
   selectionFontSize();
 };
+
+const transformFontItalic = () => {
+  const buttonItalic = document.querySelector(".italic");
+  const italicAction = (e) => {
+    e.preventDefault();
+    if (!textarea.value) alert("Digite algo");
+    insertElement("italic");
+  };
+  buttonItalic.addEventListener("click", italicAction);
+};
+
+const transformFontUnderline = () => {
+  const buttonUnderline = document.querySelector(".underline");
+  const underlineAction = (e) => {
+    e.preventDefault();
+    if (!textarea.value) alert("Digite algo");
+    insertElement("underline");
+  };
+  buttonUnderline.addEventListener("click", underlineAction);
+};
 transformFontBold();
 transformFontSize();
+transformFontItalic();
+transformFontUnderline();
 
-const activeContent = () => {
-  divarea.classList.remove("hiden");
-  divarea.innerText = textarea.value;
-  textarea.classList.add("hiden");
-};
-// IDEIA
+//
